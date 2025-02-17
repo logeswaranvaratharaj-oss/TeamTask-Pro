@@ -1,9 +1,11 @@
 import api from './api';
 
 export const projectService = {
+  // Deals (formerly Projects)
   async getProjects(params = {}) {
+    // We use the same 'projects' endpoint for now as mapped in api.php
     const response = await api.get('/projects', { params });
-    return response.data.projects;
+    return response.data.deals || response.data.projects;
   },
 
   async getProject(id) {
@@ -11,13 +13,13 @@ export const projectService = {
     return response.data;
   },
 
-  async createProject(projectData) {
-    const response = await api.post('/projects', projectData);
+  async createProject(dealData) {
+    const response = await api.post('/projects', dealData);
     return response.data;
   },
 
-  async updateProject(id, projectData) {
-    const response = await api.put(`/projects/${id}`, projectData);
+  async updateProject(id, dealData) {
+    const response = await api.put(`/projects/${id}`, dealData);
     return response.data;
   },
 
@@ -26,11 +28,21 @@ export const projectService = {
     return response.data;
   },
 
-  async addMember(projectId, userId, role) {
-    const response = await api.post(`/projects/${projectId}/members`, {
-      user_id: userId,
-      role,
+  async addMember(dealId, userId) {
+    const response = await api.post(`/projects/${dealId}/members`, {
+      user_id: userId
     });
     return response.data;
   },
+
+  // Contacts
+  async getContacts() {
+    const response = await api.get('/contacts');
+    return response.data.contacts;
+  },
+
+  async createContact(contactData) {
+    const response = await api.post('/contacts', contactData);
+    return response.data;
+  }
 };

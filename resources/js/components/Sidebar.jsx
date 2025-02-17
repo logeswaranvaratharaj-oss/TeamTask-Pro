@@ -3,11 +3,12 @@ import { Dropdown, Nav } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
 import {
     FiHome,
-    FiGrid,
-    FiCheckSquare,
+    FiBarChart2,
+    FiZap,
     FiSettings,
     FiLogOut,
-    FiUser
+    FiUsers,
+    FiTrendingUp
 } from 'react-icons/fi';
 import { authService } from '../services/authService';
 
@@ -38,43 +39,54 @@ const Sidebar = () => {
             }}>
             <div className="sidebar-header px-2 py-3 mb-4">
                 <Link to="/dashboard" className="d-flex align-items-center link-dark text-decoration-none">
-                    <div className="logo-icon bg-primary rounded-3 me-2 d-flex align-items-center justify-content-center shadow-sm" style={{ width: 36, height: 36 }}>
-                        <FiCheckSquare className="text-white" size={20} />
+                    <div className="logo-icon bg-primary-gradient rounded-3 me-2 d-flex align-items-center justify-content-center shadow-sm" style={{ width: 40, height: 40 }}>
+                        <FiTrendingUp className="text-white" size={24} />
                     </div>
-                    <span className="fs-4 fw-bold text-gradient">TeamTask</span>
+                    <div>
+                        <span className="fs-4 fw-bold text-gradient d-block">NexusCRM</span>
+                        <span className="text-muted small fw-bold" style={{ fontSize: '0.65rem', marginTop: '-4px', display: 'block' }}>SALES ACCELERATOR</span>
+                    </div>
                 </Link>
             </div>
 
             <Nav className="flex-column mb-auto sidebar-nav">
-                <div className="nav-section-label">General</div>
+                <div className="nav-section-label">Overview</div>
                 <Nav.Item className="mb-1">
                     <Link to="/dashboard" className={`sidebar-link ${isActive('/dashboard') ? 'active' : ''}`}>
                         <FiHome className="link-icon" />
-                        <span>Dashboard</span>
+                        <span>Sales Insights</span>
                     </Link>
                 </Nav.Item>
+
+                <div className="nav-section-label mt-4">Growth</div>
                 <Nav.Item className="mb-1">
                     <Link to="/projects" className={`sidebar-link ${isActive('/projects') ? 'active' : ''}`}>
-                        <FiGrid className="link-icon" />
-                        <span>Team Projects</span>
+                        <FiBarChart2 className="link-icon" />
+                        <span>Sales Pipeline</span>
                     </Link>
                 </Nav.Item>
-                <Nav.Item className="mb-1">
-                    <Link to="/my-tasks" className={`sidebar-link ${isActive('/my-tasks') ? 'active' : ''}`}>
-                        <FiCheckSquare className="link-icon" />
-                        <span>My Tasks</span>
-                    </Link>
-                </Nav.Item>
-
-                <div className="nav-section-label mt-4">Personal Space</div>
                 <Nav.Item className="mb-1">
                     <Link to="/personal-projects" className={`sidebar-link ${isActive('/personal-projects') ? 'active' : ''}`}>
-                        <FiUser className="link-icon" />
-                        <span>Personal projects</span>
+                        <FiZap className="link-icon" />
+                        <span>Personal Leads</span>
+                    </Link>
+                </Nav.Item>
+                <Nav.Item className="mb-1">
+                    <Link to="/contacts" className={`sidebar-link ${isActive('/contacts') ? 'active' : ''}`}>
+                        <FiUsers className="link-icon" />
+                        <span>Contacts</span>
                     </Link>
                 </Nav.Item>
 
-                <div className="nav-section-label mt-4">Preferences</div>
+                <div className="nav-section-label mt-4">Operations</div>
+                <Nav.Item className="mb-1">
+                    <Link to="/my-tasks" className={`sidebar-link ${isActive('/my-tasks') ? 'active' : ''}`}>
+                        <FiZap className="link-icon" />
+                        <span>Activity Log</span>
+                    </Link>
+                </Nav.Item>
+
+                <div className="nav-section-label mt-4">System</div>
                 <Nav.Item className="mb-1">
                     <Link to="/settings" className={`sidebar-link ${isActive('/settings') ? 'active' : ''}`}>
                         <FiSettings className="link-icon" />
@@ -91,7 +103,7 @@ const Sidebar = () => {
                         </div>
                         <div className="user-info flex-grow-1 overflow-hidden">
                             <div className="user-name text-truncate fw-semibold" style={{ color: 'var(--text-primary)' }}>{authService.getStoredUser()?.name}</div>
-                            <div className="user-role text-truncate small text-muted">Pro Plan</div>
+                            <div className="user-role text-truncate small text-muted">Sales Executive</div>
                         </div>
                     </Dropdown.Toggle>
 

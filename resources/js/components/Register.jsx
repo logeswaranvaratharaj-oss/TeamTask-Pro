@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Form, Button, Card, Container, Alert, Row, Col } from 'react-bootstrap';
+import { Form, Button, Card, Container, Alert, Row, Col, InputGroup } from 'react-bootstrap';
 import { authService } from '../services/authService';
-// import '../styles/Auth.css'; // Using Bootstrap now
+import { FiUser, FiMail, FiLock, FiTrendingUp } from 'react-icons/fi';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -67,68 +67,85 @@ const Register = () => {
     };
 
     return (
-        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh', padding: '2rem 0' }}>
+        <Container className="d-flex align-items-center justify-content-center" style={{ minHeight: '100vh', backgroundColor: 'var(--background-color)', padding: '2rem 0' }}>
             <Row className="w-100 justify-content-center">
-                <Col md={8} lg={6}>
-                    <Card className="shadow">
-                        <Card.Body className="p-4">
-                            <div className="text-center mb-4">
-                                <h2 className="fw-bold">TeamTask</h2>
-                                <p className="text-muted">Create your account</p>
-                            </div>
+                <Col md={10} lg={7} xl={6}>
+                    <div className="text-center mb-4">
+                        <div className="bg-primary-gradient rounded-4 d-inline-flex p-3 mb-3 shadow-lg">
+                            <FiTrendingUp className="text-white" size={32} />
+                        </div>
+                        <h2 className="fw-bold mb-0" style={{ letterSpacing: '-0.03em' }}>NexusCRM</h2>
+                        <p className="text-secondary fw-semibold small">SCALE YOUR SALES ECOSYSTEM</p>
+                    </div>
+
+                    <Card className="border-0 shadow-lg rounded-4 overflow-hidden">
+                        <Card.Body className="p-4 p-md-5">
+                            <h4 className="fw-bold mb-4 text-center">Create Professional Profile</h4>
 
                             {errors.general && (
-                                <Alert variant="danger" onClose={() => setErrors({ ...errors, general: '' })} dismissible>
+                                <Alert variant="danger" className="border-0 shadow-sm rounded-3 px-3 py-2 small" onClose={() => setErrors({ ...errors, general: '' })} dismissible>
                                     {errors.general}
                                 </Alert>
                             )}
 
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-3" controlId="name">
-                                    <Form.Label>Full Name</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="John Doe"
-                                        isInvalid={!!errors.name}
-                                    />
+                                    <Form.Label className="small fw-bold text-secondary">FULL LEGAL NAME</Form.Label>
+                                    <InputGroup className="border-2 rounded-3">
+                                        <InputGroup.Text className="bg-light border-0"><FiUser className="text-muted" /></InputGroup.Text>
+                                        <Form.Control
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            className="border-0 bg-light p-3"
+                                            placeholder="Logeswaran Varatharaj"
+                                            isInvalid={!!errors.name}
+                                        />
+                                    </InputGroup>
                                     <Form.Control.Feedback type="invalid">
                                         {errors.name && errors.name[0]}
                                     </Form.Control.Feedback>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="email">
-                                    <Form.Label>Email Address</Form.Label>
-                                    <Form.Control
-                                        type="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                        placeholder="you@example.com"
-                                        isInvalid={!!errors.email}
-                                    />
+                                    <Form.Label className="small fw-bold text-secondary">WORK EMAIL ADDRESS</Form.Label>
+                                    <InputGroup className="border-2 rounded-3">
+                                        <InputGroup.Text className="bg-light border-0"><FiMail className="text-muted" /></InputGroup.Text>
+                                        <Form.Control
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            className="border-0 bg-light p-3"
+                                            placeholder="sales@nexus-crm.com"
+                                            isInvalid={!!errors.email}
+                                        />
+                                    </InputGroup>
                                     <Form.Control.Feedback type="invalid">
                                         {errors.email && errors.email[0]}
                                     </Form.Control.Feedback>
                                 </Form.Group>
 
-                                <Row>
+                                <Row className="g-3">
                                     <Col md={6}>
                                         <Form.Group className="mb-3" controlId="password">
-                                            <Form.Label>Password</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                name="password"
-                                                value={formData.password}
-                                                onChange={handleChange}
-                                                required
-                                                placeholder="At least 8 chars"
-                                                isInvalid={!!errors.password}
-                                            />
+                                            <Form.Label className="small fw-bold text-secondary">SET PASSWORD</Form.Label>
+                                            <InputGroup className="border-2 rounded-3">
+                                                <InputGroup.Text className="bg-light border-0"><FiLock className="text-muted" /></InputGroup.Text>
+                                                <Form.Control
+                                                    type="password"
+                                                    name="password"
+                                                    value={formData.password}
+                                                    onChange={handleChange}
+                                                    required
+                                                    className="border-0 bg-light p-3"
+                                                    placeholder="At least 8 chars"
+                                                    isInvalid={!!errors.password}
+                                                />
+                                            </InputGroup>
                                             <Form.Control.Feedback type="invalid">
                                                 {errors.password}
                                             </Form.Control.Feedback>
@@ -136,16 +153,20 @@ const Register = () => {
                                     </Col>
                                     <Col md={6}>
                                         <Form.Group className="mb-4" controlId="password_confirmation">
-                                            <Form.Label>Confirm Password</Form.Label>
-                                            <Form.Control
-                                                type="password"
-                                                name="password_confirmation"
-                                                value={formData.password_confirmation}
-                                                onChange={handleChange}
-                                                required
-                                                placeholder="Confirm password"
-                                                isInvalid={!!errors.password_confirmation}
-                                            />
+                                            <Form.Label className="small fw-bold text-secondary">CONFIRM KEY</Form.Label>
+                                            <InputGroup className="border-2 rounded-3">
+                                                <InputGroup.Text className="bg-light border-0"><FiLock className="text-muted" /></InputGroup.Text>
+                                                <Form.Control
+                                                    type="password"
+                                                    name="password_confirmation"
+                                                    value={formData.password_confirmation}
+                                                    onChange={handleChange}
+                                                    required
+                                                    className="border-0 bg-light p-3"
+                                                    placeholder="Retype password"
+                                                    isInvalid={!!errors.password_confirmation}
+                                                />
+                                            </InputGroup>
                                             <Form.Control.Feedback type="invalid">
                                                 {errors.password_confirmation}
                                             </Form.Control.Feedback>
@@ -153,17 +174,18 @@ const Register = () => {
                                     </Col>
                                 </Row>
 
-                                <Button variant="primary" type="submit" className="w-100 mb-3" disabled={loading}>
-                                    {loading ? 'Creating account...' : 'Sign Up'}
+                                <Button variant="primary" type="submit" className="w-100 py-3 rounded-pill fw-bold shadow-sm mb-4" disabled={loading}>
+                                    {loading ? 'Provisioning Account...' : 'Initialize Access'}
                                 </Button>
                             </Form>
 
                             <div className="text-center">
-                                <span className="text-muted">Already have an account? </span>
-                                <Link to="/login" className="text-decoration-none">Sign in</Link>
+                                <span className="text-muted small">Part of existing team? </span>
+                                <Link to="/login" className="small fw-bold text-decoration-none">Sign In Here</Link>
                             </div>
                         </Card.Body>
                     </Card>
+                    <p className="text-center text-secondary small mt-4 opacity-50">Industrial Grade Sales CRM Framework</p>
                 </Col>
             </Row>
         </Container>

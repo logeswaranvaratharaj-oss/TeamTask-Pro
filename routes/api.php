@@ -3,10 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\ProjectController;
+use App\Http\Controllers\Api\DealController;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,15 +28,19 @@ Route::middleware('auth:sanctum')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index']);
     
-    // Projects
-    Route::get('/projects', [ProjectController::class, 'index']);
-    Route::post('/projects', [ProjectController::class, 'store']);
-    Route::get('/projects/{id}', [ProjectController::class, 'show']);
-    Route::put('/projects/{id}', [ProjectController::class, 'update']);
-    Route::delete('/projects/{id}', [ProjectController::class, 'destroy']);
-    Route::post('/projects/{id}/members', [ProjectController::class, 'addMember']);
+    // CRM Deals (Mapped to /projects for frontend stability during migration)
+    Route::get('/projects', [DealController::class, 'index']);
+    Route::post('/projects', [DealController::class, 'store']);
+    Route::get('/projects/{id}', [DealController::class, 'show']);
+    Route::put('/projects/{id}', [DealController::class, 'update']);
+    Route::delete('/projects/{id}', [DealController::class, 'destroy']);
+    Route::post('/projects/{id}/members', [DealController::class, 'addMember']);
+
+    // Canonical CRM routes
+    Route::apiResource('deals', DealController::class);
+    Route::apiResource('contacts', ContactController::class);
     
-    // Tasks
+    // Activities (Tasks)
     Route::get('/my-tasks', [TaskController::class, 'myTasks']);
     Route::get('/projects/{projectId}/tasks', [TaskController::class, 'index']);
     Route::post('/projects/{projectId}/tasks', [TaskController::class, 'store']);

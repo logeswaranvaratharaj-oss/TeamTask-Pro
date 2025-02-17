@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -29,41 +31,52 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    // User's owned projects
-    public function ownedProjects()
+    // User's owned deals
+    public function ownedDeals(): HasMany
     {
-        return $this->hasMany(Project::class, 'owner_id');
+        return $this->hasMany(Deal::class, 'owner_id');
     }
 
-    // Projects user is member of
-    public function projects()
+    // Deals user is member of
+    public function deals(): BelongsToMany
     {
-        return $this->belongsToMany(Project::class)
-                    ->withPivot('role')
+        return $this->belongsToMany(Deal::class, 'deal_user', 'user_id', 'deal_id')
                     ->withTimestamps();
     }
 
     // Tasks assigned to user
-    public function assignedTasks()
+    public function assignedTasks(): HasMany
     {
         return $this->hasMany(Task::class, 'assigned_to');
     }
 
     // Tasks created by user
-    public function createdTasks()
+    public function createdTasks(): HasMany
     {
         return $this->hasMany(Task::class, 'created_by');
     }
 
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
 
-    // Helper method to check if user can access project
-    public function canAccessProject($projectId)
+    // Contacts owned by user
+    public function contacts(): HasMany
     {
-        return $this->projects()->where('project_id', $projectId)->exists() 
-               || $this->ownedProjects()->where('id', $projectId)->exists();
+        return $this->hasMany(Contact::class, 'owner_id');
+    }
+
+    // Helper method to check if user can access deal
+    public function canAccessDeal($dealId)
+    {
+        return $this->deals()->where('deal_id', $dealId)->exists() 
+               || $this->ownedDeals()->where('id', $dealId)->exists();
+    }
+
+    // Compatibility method
+    public function canAccessProject($id)
+    {
+        return $this->canAccessDeal($id);
     }
 }
