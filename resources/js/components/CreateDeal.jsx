@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { projectService } from '../services/projectService';
+import { dealService } from '../services/dealService';
 import { FiTrendingUp, FiDollarSign, FiTarget } from 'react-icons/fi';
-import '../styles/CreateProject.css';
 
-const CreateProject = () => {
+const CreateDeal = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: '',
@@ -38,8 +37,8 @@ const CreateProject = () => {
         try {
             // Ensure title/name parity
             const submissionData = { ...formData, name: formData.title };
-            const response = await projectService.createProject(submissionData);
-            navigate(`/projects/${response.project.id}`);
+            const response = await dealService.createDeal(submissionData);
+            navigate(`/deals/${response.project.id}`);
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to initialize deal');
         } finally {
@@ -160,7 +159,7 @@ const CreateProject = () => {
                     <div className="form-actions pt-4 border-top mt-4 d-flex justify-content-end gap-3">
                         <button
                             type="button"
-                            onClick={() => navigate('/projects')}
+                            onClick={() => navigate('/deals')}
                             className="btn btn-outline-secondary rounded-pill px-4 py-2 fw-semibold shadow-none"
                         >
                             Cancel
@@ -177,4 +176,4 @@ const CreateProject = () => {
     );
 };
 
-export default CreateProject;
+export default CreateDeal;

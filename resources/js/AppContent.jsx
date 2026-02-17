@@ -3,10 +3,11 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
-import ProjectList from './components/ProjectList';
-import ProjectDetail from './components/ProjectDetail';
-import CreateProject from './components/CreateProject';
-import MyTasks from './components/MyTasks';
+import DealList from './components/DealList';
+import DealDetail from './components/DealDetail';
+import CreateDeal from './components/CreateDeal';
+import ContactList from './components/ContactList';
+import ActivityLog from './components/ActivityLog';
 import Settings from './pages/Settings';
 import Layout from './components/Layout';
 import PrivateRoute from './components/PrivateRoute';
@@ -30,56 +31,70 @@ function App() {
           }
         />
 
+        {/* CRM Deal Management */}
         <Route
-          path="/projects"
+          path="/deals"
           element={
             <PrivateRoute>
               <Layout>
-                <ProjectList type="team" />
+                <DealList type="team" />
               </Layout>
             </PrivateRoute>
           }
         />
 
         <Route
-          path="/personal-projects"
+          path="/leads"
           element={
             <PrivateRoute>
               <Layout>
-                <ProjectList type="personal" />
+                <DealList type="personal" />
               </Layout>
             </PrivateRoute>
           }
         />
 
         <Route
-          path="/projects/new"
+          path="/deals/new"
           element={
             <PrivateRoute>
               <Layout>
-                <CreateProject />
+                <CreateDeal />
               </Layout>
             </PrivateRoute>
           }
         />
 
         <Route
-          path="/projects/:id"
+          path="/deals/:id"
           element={
             <PrivateRoute>
               <Layout>
-                <ProjectDetail />
+                <DealDetail />
               </Layout>
             </PrivateRoute>
           }
         />
 
+        {/* Contacts */}
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <ContactList />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+
+        {/* Activities */}
         <Route
           path="/my-tasks"
           element={
             <PrivateRoute>
               <Layout>
-                <MyTasks />
+                <ActivityLog />
               </Layout>
             </PrivateRoute>
           }
@@ -95,6 +110,12 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        {/* Redirects for stability */}
+        <Route path="/projects" element={<Navigate to="/deals" replace />} />
+        <Route path="/personal-projects" element={<Navigate to="/leads" replace />} />
+        <Route path="/projects/new" element={<Navigate to="/deals/new" replace />} />
+        <Route path="/projects/:id" element={<Navigate to="/deals/:id" replace />} />
 
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>

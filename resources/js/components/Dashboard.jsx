@@ -96,7 +96,7 @@ const Dashboard = () => {
                     <Link to="/contacts/new" className="btn btn-outline-primary rounded-pill px-4 fw-semibold shadow-sm">
                         Add Contact
                     </Link>
-                    <Link to="/projects/new" className="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm animate-hover">
+                    <Link to="/deals/new" className="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm animate-hover">
                         <FiPlus className="me-2" />
                         Create Deal
                     </Link>

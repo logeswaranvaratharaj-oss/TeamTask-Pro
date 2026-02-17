@@ -8,12 +8,17 @@ import {
     FiSettings,
     FiLogOut,
     FiUsers,
-    FiTrendingUp
+    FiTrendingUp,
+    FiMoon,
+    FiSun,
+    FiTarget
 } from 'react-icons/fi';
 import { authService } from '../services/authService';
+import { useTheme } from './ThemeProvider';
 
 const Sidebar = () => {
     const location = useLocation();
+    const { theme, toggleTheme } = useTheme();
 
     const isActive = (path) => {
         return location.pathname === path;
@@ -37,8 +42,8 @@ const Sidebar = () => {
                 transition: 'all 0.3s ease',
                 zIndex: 1000
             }}>
-            <div className="sidebar-header px-2 py-3 mb-4">
-                <Link to="/dashboard" className="d-flex align-items-center link-dark text-decoration-none">
+            <div className="sidebar-header px-2 py-3 mb-4 d-flex align-items-center justify-content-between">
+                <Link to="/dashboard" className="d-flex align-items-center link-dark text-decoration-none" style={{ color: 'inherit' }}>
                     <div className="logo-icon bg-primary-gradient rounded-3 me-2 d-flex align-items-center justify-content-center shadow-sm" style={{ width: 40, height: 40 }}>
                         <FiTrendingUp className="text-white" size={24} />
                     </div>
@@ -60,21 +65,21 @@ const Sidebar = () => {
 
                 <div className="nav-section-label mt-4">Growth</div>
                 <Nav.Item className="mb-1">
-                    <Link to="/projects" className={`sidebar-link ${isActive('/projects') ? 'active' : ''}`}>
+                    <Link to="/deals" className={`sidebar-link ${isActive('/deals') ? 'active' : ''}`}>
                         <FiBarChart2 className="link-icon" />
                         <span>Sales Pipeline</span>
                     </Link>
                 </Nav.Item>
                 <Nav.Item className="mb-1">
-                    <Link to="/personal-projects" className={`sidebar-link ${isActive('/personal-projects') ? 'active' : ''}`}>
-                        <FiZap className="link-icon" />
-                        <span>Personal Leads</span>
+                    <Link to="/leads" className={`sidebar-link ${isActive('/leads') ? 'active' : ''}`}>
+                        <FiTarget className="link-icon" />
+                        <span>Prospect Leads</span>
                     </Link>
                 </Nav.Item>
                 <Nav.Item className="mb-1">
                     <Link to="/contacts" className={`sidebar-link ${isActive('/contacts') ? 'active' : ''}`}>
                         <FiUsers className="link-icon" />
-                        <span>Contacts</span>
+                        <span>Contacts Hub</span>
                     </Link>
                 </Nav.Item>
 
@@ -82,7 +87,7 @@ const Sidebar = () => {
                 <Nav.Item className="mb-1">
                     <Link to="/my-tasks" className={`sidebar-link ${isActive('/my-tasks') ? 'active' : ''}`}>
                         <FiZap className="link-icon" />
-                        <span>Activity Log</span>
+                        <span>Activity Audit</span>
                     </Link>
                 </Nav.Item>
 
@@ -90,12 +95,33 @@ const Sidebar = () => {
                 <Nav.Item className="mb-1">
                     <Link to="/settings" className={`sidebar-link ${isActive('/settings') ? 'active' : ''}`}>
                         <FiSettings className="link-icon" />
-                        <span>Settings</span>
+                        <span>Preference Center</span>
                     </Link>
                 </Nav.Item>
             </Nav>
 
             <div className="sidebar-footer mt-auto pt-4 border-top">
+                <div className="theme-toggle-wrapper px-2 mb-3">
+                    <button
+                        onClick={toggleTheme}
+                        className="btn w-100 d-flex align-items-center justify-content-between rounded-3 border-0 py-2 transition-all px-3"
+                        style={{
+                            backgroundColor: 'var(--background-color)',
+                            color: 'var(--text-primary)',
+                            fontSize: '0.9rem',
+                            fontWeight: 600
+                        }}
+                    >
+                        <div className="d-flex align-items-center">
+                            {theme === 'dark' ? <FiMoon className="me-2 text-primary" /> : <FiSun className="me-2 text-warning" />}
+                            <span>{theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</span>
+                        </div>
+                        <div className={`form-check form-switch mb-0`}>
+                            <input className="form-check-input" type="checkbox" checked={theme === 'dark'} readOnly style={{ cursor: 'pointer' }} />
+                        </div>
+                    </button>
+                </div>
+
                 <Dropdown drop="up" className="w-100 shadow-none">
                     <Dropdown.Toggle as="div" className="d-flex align-items-center text-decoration-none user-profile-link px-2 py-2 rounded-3 border-0 transition-all dropdown-toggle-custom" id="dropdown-user" style={{ cursor: 'pointer' }}>
                         <div className="user-avatar bg-primary-gradient rounded-circle d-flex align-items-center justify-content-center text-white me-2 shadow-sm" style={{ width: 36, height: 36 }}>

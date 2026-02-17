@@ -40,14 +40,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
   color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .card {
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow-sm);
   border-radius: var(--radius-lg);
-  background-color: var(--surface-color);
+  background-color: var(--surface-color) !important;
+  color: var(--text-primary);
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card-header,
+.card-footer {
+  background-color: var(--surface-color) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary);
 }
 
 .btn-primary {
@@ -65,6 +75,17 @@ body {
   box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
 }
 
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
 h1,
 h2,
 h3,
@@ -78,6 +99,18 @@ h6 {
 
 .text-muted {
   color: var(--text-secondary) !important;
+}
+
+.text-dark {
+  color: var(--text-primary) !important;
+}
+
+.bg-light {
+  background-color: var(--background-color) !important;
+}
+
+.bg-white {
+  background-color: var(--surface-color) !important;
 }
 
 /* Sidebar Custom Styles */
@@ -148,6 +181,8 @@ h6 {
   color: var(--text-primary) !important;
   border-radius: var(--radius-lg) !important;
   padding: 0.5rem !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--shadow-md);
 }
 
 .dropdown-item {
@@ -162,8 +197,60 @@ h6 {
 }
 
 [data-theme='dark'] .dropdown-menu {
-  border: 1px solid var(--border-color) !important;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Form Controls Theme */
+.form-control,
+.form-select {
+  background-color: var(--surface-color) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(5, 150, 105, 0.25);
+  background-color: var(--surface-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.input-group-text {
+  background-color: var(--background-color) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary);
+}
+
+/* Modal Theme */
+.modal-content {
+  background-color: var(--surface-color) !important;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--border-color);
+}
+
+/* Table Theme */
+.table {
+  color: var(--text-primary) !important;
+}
+
+.table thead th {
+  background-color: var(--background-color) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-secondary);
+}
+
+.table td {
+  border-color: var(--border-color) !important;
+}
+
+.hover-bg-light:hover {
+  background-color: var(--background-color) !important;
 }
 
 /* Transitions */
