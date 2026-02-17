@@ -1,56 +1,58 @@
-# TeamTask Pro - Project Management Platform
+# NexusCRM - Intelligent Sales & Client Relationship Manager
 
-TeamTask Pro is a modern, full-stack project management application built with **Laravel 11** and **React**. It is designed for both personal productivity and team collaboration, featuring a professional UI with data-driven insights.
+NexusCRM is a high-performance, industrial-grade Customer Relationship Management (CRM) platform built with **Laravel 11** and **React**. It empowers sales teams to accelerate growth through intelligent lead tracking, pipeline visualization, and comprehensive client management.
 
-## ✨ Key Features
+## ✨ Core Ecosystem
 
-- **📊 Advanced Dashboard**: Real-time project statistics and activity overview using data visualizations (Recharts).
-- **🌓 Premium Theme Support**: Seamless Dark and Light mode toggle with state persistence.
-- **📁 Dual Project Modules**: 
-  - **Team Projects**: Collaborative spaces with member management.
-  - **Personal Workspace**: Private projects for individual task tracking.
-- **✅ Task Management**: Prioritize tasks (High, Medium, Low) and track progress with interactive status badges.
-- **🎨 Professional UI**: Modern sidebar navigation, glassmorphism effects, and responsive design built with **React-Bootstrap** and **Inter** typography.
-- **🔐 Secure Authentication**: Robust user authentication system powered by **Laravel Sanctum**.
+- **📈 Sales Intelligence Dashboard**: High-level insights into pipeline value, active deals, and sales velocity using **Recharts**.
+- **💎 Premium Pipeline Manager**: Visualize your sales funnel across multiple stages (Discovery to Closed Won) with dynamic valuation tracking.
+- **📁 Opportunity Segmentation**:
+  - **Corporate Deals**: Scalable collaborative workspace for team-based enterprise sales.
+  - **Individual Leads**: Private workspace for specialized client development.
+- **⚡ Activity Hub**: Strategic activity logging and task prioritization to ensure no prospect is left behind.
+- **🌓 Adaptive Interface**: State-of-the-art Dark/Light mode engine optimized for professional focus and long-term productivity.
+- **👥 Contact Intelligence**: Centralized client database with deep integration into the sales pipeline.
 
-## 🚀 Tech Stack
+## 🚀 Enterprise Tech Stack
 
-- **Backend**: Laravel 11 (PHP 8.2+)
-- **Frontend**: React 18 with Vite
-- **Styling**: CSS3 Custom Variables (Vanilla CSS) & React-Bootstrap
-- **Database**: MySQL/MariaDB
-- **Icons**: React Icons (Feather Icons)
-- **Charts**: Recharts
+- **Framework**: Laravel 11 (Modern PHP 8.2+ Architecture)
+- **Frontend Engine**: React 18 powered by Vite
+- **Design System**: Atomic CSS with Variable-driven tokens & React-Bootstrap
+- **Data Layer**: MySQL with Eloquent ORM
+- **Visuals**: Dynamic SVGs (React Icons) & Analytics (Recharts)
+- **Security**: Industrial-standard API authentication via Laravel Sanctum
 
-## 🛠️ Installation & Setup
+## 🛠️ Infrastructure Setup
 
-1. **Clone the repository**:
+1. **Deployment**:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/TeamTask-Pro.git
-   cd TeamTask-Pro
+   git clone https://github.com/logeswaranvaratharaj-oss/NexusCRM.git
+   cd NexusCRM
    ```
 
-2. **Backend Setup**:
+2. **Core Services**:
    ```bash
    composer install
-   cp .env.example .env
    php artisan key:generate
    php artisan migrate --seed
    ```
 
-3. **Frontend Setup**:
+3. **Interface Provisioning**:
    ```bash
    npm install
-   npm run dev
+   npm run build
    ```
 
-4. **Environment Configuration**:
-   Update your `.env` file with your database credentials.
+## 📊 Strategic Roadmap
 
-## 📸 Screenshots
+- [x] Multi-stage Sales Pipeline
+- [x] Revenue Projection Analytics
+- [x] Contact Relationship Hub
+- [ ] AI-driven Lead Scoring (Q3 2025)
+- [ ] Email Integration Bridge (Q4 2025)
 
-*(Add screenshots here to wow your interviewer!)*
+## 📄 Corporate License
 
-## 📄 License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This project is open-source and licensed under the [MIT license](LICENSE).
+Developed by **Logeswaran Varatharaj**
